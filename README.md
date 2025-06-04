@@ -29,13 +29,9 @@ const client = new Testedsj({
   apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const order = await client.store.order.create({ petId: 1, quantity: 1, status: 'placed' });
+const order = await client.store.order.create({ petId: 1, quantity: 1, status: 'placed' });
 
-  console.log(order.id);
-}
-
-main();
+console.log(order.id);
 ```
 
 ### Request & Response types
@@ -50,11 +46,7 @@ const client = new Testedsj({
   apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const response: Testedsj.StoreListInventoryResponse = await client.store.listInventory();
-}
-
-main();
+const response: Testedsj.StoreListInventoryResponse = await client.store.listInventory();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,19 +59,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const response = await client.store.listInventory().catch(async (err) => {
-    if (err instanceof Testedsj.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const response = await client.store.listInventory().catch(async (err) => {
+  if (err instanceof Testedsj.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
