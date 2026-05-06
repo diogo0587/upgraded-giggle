@@ -1,0 +1,45 @@
+{
+  "dxt_version": "0.2",
+  "name": "testedsj-mcp",
+  "version": "0.0.1-alpha.0",
+  "description": "The official MCP Server for the Testedsj API",
+  "author": {
+    "name": "Testedsj"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogo0587/upgraded-giggle.git"
+  },
+  "homepage": "https://github.com/diogo0587/upgraded-giggle/tree/main/packages/mcp-server#readme",
+  "server": {
+    "type": "node",
+    "entry_point": "index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/index.js"
+      ],
+      "env": {
+        "TESTEDSJ_API_KEY": "${user_config.TESTEDSJ_API_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "TESTEDSJ_API_KEY": {
+      "title": "api_key",
+      "description": "",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "tools": [],
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": [
+    "api"
+  ]
+}
