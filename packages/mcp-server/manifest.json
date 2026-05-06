@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.2",
   "name": "testedsj-mcp",
-  "version": "0.0.1-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "The official MCP Server for the Testedsj API",
   "author": {
     "name": "Testedsj"
