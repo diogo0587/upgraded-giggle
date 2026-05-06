@@ -6,6 +6,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Operations about user
+ */
 export class UserResource extends APIResource {
   /**
    * This can only be done by the logged in user.
@@ -78,8 +81,8 @@ export class UserResource extends APIResource {
     params: UserCreateWithListParams | null | undefined = undefined,
     options?: RequestOptions,
   ): APIPromise<User> {
-    const { items } = params ?? {};
-    return this._client.post('/user/createWithList', { body: items, ...options });
+    const { body } = params ?? {};
+    return this._client.post('/user/createWithList', { body: body, ...options });
   }
 
   /**
@@ -176,7 +179,7 @@ export interface UserUpdateParams {
 }
 
 export interface UserCreateWithListParams {
-  items?: Array<User>;
+  body?: Array<User>;
 }
 
 export interface UserLoginParams {

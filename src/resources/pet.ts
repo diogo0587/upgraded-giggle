@@ -6,6 +6,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Everything about your Pets
+ */
 export class PetResource extends APIResource {
   /**
    * Add a new pet to the store
@@ -100,12 +103,12 @@ export class PetResource extends APIResource {
    *
    * @example
    * ```ts
-   * await client.pet.updateByID(0);
+   * await client.pet.updateWithForm(0);
    * ```
    */
-  updateByID(
+  updateWithForm(
     petID: number,
-    params: PetUpdateByIDParams | null | undefined = {},
+    params: PetUpdateWithFormParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { name, status } = params ?? {};
@@ -121,28 +124,26 @@ export class PetResource extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.pet.uploadImage(0);
+   * const response = await client.pet.uploadImage(
+   *   0,
+   *   fs.createReadStream('path/to/file'),
+   * );
    * ```
    */
   uploadImage(
     petID: number,
-    params: PetUploadImageParams | null | undefined = undefined,
+    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: PetUploadImageParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<PetUploadImageResponse> {
-    const { additionalMetadata, image } = params ?? {};
+    const { additionalMetadata } = params ?? {};
     return this._client.post(path`/pet/${petID}/uploadImage`, {
+      body: body,
       query: { additionalMetadata },
-      body: image,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
   }
-}
-
-export interface Category {
-  id?: number;
-
-  name?: string;
 }
 
 export interface Pet {
@@ -152,7 +153,7 @@ export interface Pet {
 
   id?: number;
 
-  category?: Category;
+  category?: Pet.Category;
 
   /**
    * pet status in the store
@@ -163,6 +164,12 @@ export interface Pet {
 }
 
 export namespace Pet {
+  export interface Category {
+    id?: number;
+
+    name?: string;
+  }
+
   export interface Tag {
     id?: number;
 
@@ -189,7 +196,7 @@ export interface PetCreateParams {
 
   id?: number;
 
-  category?: Category;
+  category?: PetCreateParams.Category;
 
   /**
    * pet status in the store
@@ -200,6 +207,12 @@ export interface PetCreateParams {
 }
 
 export namespace PetCreateParams {
+  export interface Category {
+    id?: number;
+
+    name?: string;
+  }
+
   export interface Tag {
     id?: number;
 
@@ -214,7 +227,7 @@ export interface PetUpdateParams {
 
   id?: number;
 
-  category?: Category;
+  category?: PetUpdateParams.Category;
 
   /**
    * pet status in the store
@@ -225,6 +238,12 @@ export interface PetUpdateParams {
 }
 
 export namespace PetUpdateParams {
+  export interface Category {
+    id?: number;
+
+    name?: string;
+  }
+
   export interface Tag {
     id?: number;
 
@@ -246,7 +265,7 @@ export interface PetFindByTagsParams {
   tags?: Array<string>;
 }
 
-export interface PetUpdateByIDParams {
+export interface PetUpdateWithFormParams {
   /**
    * Name of pet that needs to be updated
    */
@@ -263,16 +282,10 @@ export interface PetUploadImageParams {
    * Query param: Additional Metadata
    */
   additionalMetadata?: string;
-
-  /**
-   * Body param:
-   */
-  image?: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 }
 
 export declare namespace PetResource {
   export {
-    type Category as Category,
     type Pet as Pet,
     type PetFindByStatusResponse as PetFindByStatusResponse,
     type PetFindByTagsResponse as PetFindByTagsResponse,
@@ -281,7 +294,7 @@ export declare namespace PetResource {
     type PetUpdateParams as PetUpdateParams,
     type PetFindByStatusParams as PetFindByStatusParams,
     type PetFindByTagsParams as PetFindByTagsParams,
-    type PetUpdateByIDParams as PetUpdateByIDParams,
+    type PetUpdateWithFormParams as PetUpdateWithFormParams,
     type PetUploadImageParams as PetUploadImageParams,
   };
 }

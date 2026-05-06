@@ -1,14 +1,7 @@
-# Shared
-
-Types:
-
-- <code><a href="./src/resources/shared.ts">Order</a></code>
-
 # Pet
 
 Types:
 
-- <code><a href="./src/resources/pet.ts">Category</a></code>
 - <code><a href="./src/resources/pet.ts">Pet</a></code>
 - <code><a href="./src/resources/pet.ts">PetFindByStatusResponse</a></code>
 - <code><a href="./src/resources/pet.ts">PetFindByTagsResponse</a></code>
@@ -22,8 +15,8 @@ Methods:
 - <code title="delete /pet/{petId}">client.pet.<a href="./src/resources/pet.ts">delete</a>(petID) -> void</code>
 - <code title="get /pet/findByStatus">client.pet.<a href="./src/resources/pet.ts">findByStatus</a>({ ...params }) -> PetFindByStatusResponse</code>
 - <code title="get /pet/findByTags">client.pet.<a href="./src/resources/pet.ts">findByTags</a>({ ...params }) -> PetFindByTagsResponse</code>
-- <code title="post /pet/{petId}">client.pet.<a href="./src/resources/pet.ts">updateByID</a>(petID, { ...params }) -> void</code>
-- <code title="post /pet/{petId}/uploadImage">client.pet.<a href="./src/resources/pet.ts">uploadImage</a>(petID, { ...params }) -> PetUploadImageResponse</code>
+- <code title="post /pet/{petId}">client.pet.<a href="./src/resources/pet.ts">updateWithForm</a>(petID, { ...params }) -> void</code>
+- <code title="post /pet/{petId}/uploadImage">client.pet.<a href="./src/resources/pet.ts">uploadImage</a>(petID, body, { ...params }) -> PetUploadImageResponse</code>
 
 # Store
 
@@ -36,6 +29,10 @@ Methods:
 - <code title="get /store/inventory">client.store.<a href="./src/resources/store/store.ts">listInventory</a>() -> StoreListInventoryResponse</code>
 
 ## Order
+
+Types:
+
+- <code><a href="./src/resources/store/order.ts">Order</a></code>
 
 Methods:
 
@@ -56,6 +53,6 @@ Methods:
 - <code title="get /user/{username}">client.user.<a href="./src/resources/user.ts">retrieve</a>(username) -> User</code>
 - <code title="put /user/{username}">client.user.<a href="./src/resources/user.ts">update</a>(existingUsername, { ...params }) -> void</code>
 - <code title="delete /user/{username}">client.user.<a href="./src/resources/user.ts">delete</a>(username) -> void</code>
-- <code title="post /user/createWithList">client.user.<a href="./src/resources/user.ts">createWithList</a>([ ...items ]) -> User</code>
+- <code title="post /user/createWithList">client.user.<a href="./src/resources/user.ts">createWithList</a>([ ...body ]) -> User</code>
 - <code title="get /user/login">client.user.<a href="./src/resources/user.ts">login</a>({ ...params }) -> string</code>
 - <code title="get /user/logout">client.user.<a href="./src/resources/user.ts">logout</a>() -> void</code>

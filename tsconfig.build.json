@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "testedsj/*": ["dist/src/*"],
-      "testedsj": ["dist/src/index.ts"]
+      "testedsj/*": ["./dist/src/*"],
+      "testedsj": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
