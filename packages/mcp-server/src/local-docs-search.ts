@@ -76,6 +76,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst pet = await client.pet.update({ name: 'doggie', photoUrls: ['string'] });\n\nconsole.log(pet.id);",
       },
+      go: {
+        method: 'client.Pet.Update',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpet, err := client.Pet.Update(context.TODO(), testedsj.PetUpdateParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pet.ID)\n}\n',
+      },
+      cli: {
+        method: 'pet update',
+        example:
+          "testedsj pet update \\\n  --api-key 'My API Key' \\\n  --name doggie \\\n  --photo-url string",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "api_key: $TESTEDSJ_API_KEY" \\\n    -d \'{\n          "name": "doggie",\n          "photoUrls": [\n            "string"\n          ],\n          "id": 10\n        }\'',
@@ -108,6 +118,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst pet = await client.pet.create({ name: 'doggie', photoUrls: ['string'] });\n\nconsole.log(pet.id);",
       },
+      go: {
+        method: 'client.Pet.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpet, err := client.Pet.New(context.TODO(), testedsj.PetNewParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pet.ID)\n}\n',
+      },
+      cli: {
+        method: 'pet create',
+        example:
+          "testedsj pet create \\\n  --api-key 'My API Key' \\\n  --name doggie \\\n  --photo-url string",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet \\\n    -H \'Content-Type: application/json\' \\\n    -H "api_key: $TESTEDSJ_API_KEY" \\\n    -d \'{\n          "name": "doggie",\n          "photoUrls": [\n            "string"\n          ],\n          "id": 10\n        }\'',
@@ -132,6 +152,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.pet.findByStatus',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst pets = await client.pet.findByStatus();\n\nconsole.log(pets);",
+      },
+      go: {
+        method: 'client.Pet.FindByStatus',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpets, err := client.Pet.FindByStatus(context.TODO(), testedsj.PetFindByStatusParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pets)\n}\n',
+      },
+      cli: {
+        method: 'pet find_by_status',
+        example: "testedsj pet find-by-status \\\n  --api-key 'My API Key'",
       },
       http: {
         example:
@@ -159,6 +188,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst pets = await client.pet.findByTags();\n\nconsole.log(pets);",
       },
+      go: {
+        method: 'client.Pet.FindByTags',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpets, err := client.Pet.FindByTags(context.TODO(), testedsj.PetFindByTagsParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pets)\n}\n',
+      },
+      cli: {
+        method: 'pet find_by_tags',
+        example: "testedsj pet find-by-tags \\\n  --api-key 'My API Key'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet/findByTags \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -184,6 +222,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst pet = await client.pet.retrieve(0);\n\nconsole.log(pet.id);",
       },
+      go: {
+        method: 'client.Pet.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpet, err := client.Pet.Get(context.TODO(), 0)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pet.ID)\n}\n',
+      },
+      cli: {
+        method: 'pet retrieve',
+        example: "testedsj pet retrieve \\\n  --api-key 'My API Key' \\\n  --pet-id 0",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet/$PET_ID \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -207,6 +254,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.pet.updateWithForm(0);",
       },
+      go: {
+        method: 'client.Pet.UpdateWithForm',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Pet.UpdateWithForm(\n\t\tcontext.TODO(),\n\t\t0,\n\t\ttestedsj.PetUpdateWithFormParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'pet update_with_form',
+        example: "testedsj pet update-with-form \\\n  --api-key 'My API Key' \\\n  --pet-id 0",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet/$PET_ID \\\n    -X POST \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -229,6 +285,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.pet.delete',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.pet.delete(0);",
+      },
+      go: {
+        method: 'client.Pet.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Pet.Delete(context.TODO(), 0)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'pet delete',
+        example: "testedsj pet delete \\\n  --api-key 'My API Key' \\\n  --pet-id 0",
       },
       http: {
         example:
@@ -254,6 +319,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.pet.uploadImage(0, fs.createReadStream('path/to/file'));\n\nconsole.log(response.code);",
       },
+      go: {
+        method: 'client.Pet.UploadImage',
+        example:
+          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Pet.UploadImage(\n\t\tcontext.TODO(),\n\t\t0,\n\t\tio.Reader(bytes.NewBuffer([]byte("Example data"))),\n\t\ttestedsj.PetUploadImageParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Code)\n}\n',
+      },
+      cli: {
+        method: 'pet upload_image',
+        example:
+          "testedsj pet upload-image \\\n  --api-key 'My API Key' \\\n  --pet-id 0 \\\n  --body 'Example data'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/pet/$PET_ID/uploadImage \\\n    -X POST \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -276,6 +351,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.store.listInventory',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.store.listInventory();\n\nconsole.log(response);",
+      },
+      go: {
+        method: 'client.Store.ListInventory',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Store.ListInventory(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
+      },
+      cli: {
+        method: 'store list_inventory',
+        example: "testedsj store list-inventory \\\n  --api-key 'My API Key'",
       },
       http: {
         example:
@@ -309,6 +393,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst order = await client.store.order.create();\n\nconsole.log(order.id);",
       },
+      go: {
+        method: 'client.Store.Order.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torder, err := client.Store.Order.New(context.TODO(), testedsj.StoreOrderNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", order.ID)\n}\n',
+      },
+      cli: {
+        method: 'order create',
+        example: "testedsj store:order create \\\n  --api-key 'My API Key'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/store/order \\\n    -X POST \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -335,6 +428,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst order = await client.store.order.retrieve(0);\n\nconsole.log(order.id);",
       },
+      go: {
+        method: 'client.Store.Order.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torder, err := client.Store.Order.Get(context.TODO(), 0)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", order.ID)\n}\n',
+      },
+      cli: {
+        method: 'order retrieve',
+        example: "testedsj store:order retrieve \\\n  --api-key 'My API Key' \\\n  --order-id 0",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/store/order/$ORDER_ID \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -358,6 +460,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.store.order.delete',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.store.order.delete(0);",
+      },
+      go: {
+        method: 'client.Store.Order.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Store.Order.Delete(context.TODO(), 0)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'order delete',
+        example: "testedsj store:order delete \\\n  --api-key 'My API Key' \\\n  --order-id 0",
       },
       http: {
         example:
@@ -393,6 +504,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst user = await client.user.create();\n\nconsole.log(user.id);",
       },
+      go: {
+        method: 'client.User.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tuser, err := client.User.New(context.TODO(), testedsj.UserNewParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", user.ID)\n}\n',
+      },
+      cli: {
+        method: 'user create',
+        example: "testedsj user create \\\n  --api-key 'My API Key'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/user \\\n    -X POST \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -420,6 +540,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst user = await client.user.createWithList();\n\nconsole.log(user.id);",
       },
+      go: {
+        method: 'client.User.NewWithList',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tuser, err := client.User.NewWithList(context.TODO(), testedsj.UserNewWithListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", user.ID)\n}\n',
+      },
+      cli: {
+        method: 'user create_with_list',
+        example: "testedsj user create-with-list \\\n  --api-key 'My API Key'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/user/createWithList \\\n    -X POST \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -444,6 +573,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.user.login();\n\nconsole.log(response);",
       },
+      go: {
+        method: 'client.User.Login',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.User.Login(context.TODO(), testedsj.UserLoginParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
+      },
+      cli: {
+        method: 'user login',
+        example: "testedsj user login \\\n  --api-key 'My API Key'",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/user/login \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -465,6 +603,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.user.logout',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.user.logout();",
+      },
+      go: {
+        method: 'client.User.Logout',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.User.Logout(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'user logout',
+        example: "testedsj user logout \\\n  --api-key 'My API Key'",
       },
       http: {
         example:
@@ -490,6 +637,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.user.retrieve',
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nconst user = await client.user.retrieve('username');\n\nconsole.log(user.id);",
+      },
+      go: {
+        method: 'client.User.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tuser, err := client.User.Get(context.TODO(), "username")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", user.ID)\n}\n',
+      },
+      cli: {
+        method: 'user retrieve',
+        example: "testedsj user retrieve \\\n  --api-key 'My API Key' \\\n  --username username",
       },
       http: {
         example:
@@ -524,6 +680,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.user.update('username');",
       },
+      go: {
+        method: 'client.User.Update',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.User.Update(\n\t\tcontext.TODO(),\n\t\t"username",\n\t\ttestedsj.UserUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'user update',
+        example: "testedsj user update \\\n  --api-key 'My API Key' \\\n  --existing-username username",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/user/$EXISTING_USERNAME \\\n    -X PUT \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -547,6 +712,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Testedsj from 'testedsj';\n\nconst client = new Testedsj({\n  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.user.delete('username');",
       },
+      go: {
+        method: 'client.User.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.User.Delete(context.TODO(), "username")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      cli: {
+        method: 'user delete',
+        example: "testedsj user delete \\\n  --api-key 'My API Key' \\\n  --username username",
+      },
       http: {
         example:
           'curl https://petstore3.swagger.io/api/v3/user/$USERNAME \\\n    -X DELETE \\\n    -H "api_key: $TESTEDSJ_API_KEY"',
@@ -556,6 +730,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
 ];
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [
+  {
+    language: 'cli',
+    content:
+      "# Testedsj CLI\n\nThe official CLI for the Testedsj REST API.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## Installation\n\n### Installing with Go\n\nTo test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.\n\n~~~sh\ngo install 'github.com/stainless-sdks/testedsj-cli/cmd/testedsj@latest'\n~~~\n\nOnce you have run `go install`, the binary is placed in your Go bin directory:\n\n- **Default location**: `$HOME/go/bin` (or `$GOPATH/bin` if GOPATH is set)\n- **Check your path**: Run `go env GOPATH` to see the base directory\n\nIf commands aren't found after installation, add the Go bin directory to your PATH:\n\n~~~sh\n# Add to your shell profile (.zshrc, .bashrc, etc.)\nexport PATH=\"$PATH:$(go env GOPATH)/bin\"\n~~~\n\n### Running Locally\n\nAfter cloning the git repository for this project, you can use the\n`scripts/run` script to run the tool locally:\n\n~~~sh\n./scripts/run args...\n~~~\n\n## Usage\n\nThe CLI follows a resource-based command structure:\n\n~~~sh\ntestedsj [resource] <command> [flags...]\n~~~\n\n~~~sh\ntestedsj pet update \\\n  --api-key 'My API Key' \\\n  --name doggie \\\n  --photo-url string\n~~~\n\nFor details about specific commands, use the `--help` flag.\n\n### Environment variables\n\n| Environment variable | Required |\n| -------------------- | -------- |\n| `TESTEDSJ_API_KEY`   | yes      |\n\n### Global flags\n\n- `--api-key` (can also be set with `TESTEDSJ_API_KEY` env var)\n- `--help` - Show command line usage\n- `--debug` - Enable debug logging (includes HTTP request/response details)\n- `--version`, `-v` - Show the CLI version\n- `--base-url` - Use a custom API backend URL\n- `--format` - Change the output format (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--format-error` - Change the output format for errors (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--transform` - Transform the data output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n- `--transform-error` - Transform the error output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n\n### Passing files as arguments\n\nTo pass files to your API, you can use the `@myfile.ext` syntax:\n\n~~~bash\ntestedsj <command> --arg @abe.jpg\n~~~\n\nFiles can also be passed inside JSON or YAML blobs:\n\n~~~bash\ntestedsj <command> --arg '{image: \"@abe.jpg\"}'\n# Equivalent:\ntestedsj <command> <<YAML\narg:\n  image: \"@abe.jpg\"\nYAML\n~~~\n\nIf you need to pass a string literal that begins with an `@` sign, you can\nescape the `@` sign to avoid accidentally passing a file.\n\n~~~bash\ntestedsj <command> --username '\\@abe'\n~~~\n\n#### Explicit encoding\n\nFor JSON endpoints, the CLI tool does filetype sniffing to determine whether the\nfile contents should be sent as a string literal (for plain text files) or as a\nbase64-encoded string literal (for binary files). If you need to explicitly send\nthe file as either plain text or base64-encoded data, you can use\n`@file://myfile.txt` (for string encoding) or `@data://myfile.dat` (for\nbase64-encoding). Note that absolute paths will begin with `@file://` or\n`@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).\n\n~~~bash\ntestedsj <command> --arg @data://file.txt\n~~~\n\n## Linking different Go SDK versions\n\nYou can link the CLI against a different version of the Testedsj Go SDK\nfor development purposes using the `./scripts/link` script.\n\nTo link to a specific version from a repository (version can be a branch,\ngit tag, or commit hash):\n\n~~~bash\n./scripts/link github.com/org/repo@version\n~~~\n\nTo link to a local copy of the SDK:\n\n~~~bash\n./scripts/link ../path/to/testedsj-go\n~~~\n\nIf you run the link script without any arguments, it will default to `../testedsj-go`.\n",
+  },
+  {
+    language: 'go',
+    content:
+      '# Testedsj Go API Library\n\n<a href="https://pkg.go.dev/github.com/stainless-sdks/testedsj-go"><img src="https://pkg.go.dev/badge/github.com/stainless-sdks/testedsj-go.svg" alt="Go Reference"></a>\n\nThe Testedsj Go library provides convenient access to the Testedsj REST API\nfrom applications written in Go.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Testedsj MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=testedsj-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInRlc3RlZHNqLW1jcCJdLCJlbnYiOnsiVEVTVEVEU0pfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22testedsj-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22testedsj-mcp%22%5D%2C%22env%22%3A%7B%22TESTEDSJ_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n\n\n```go\nimport (\n\t"github.com/stainless-sdks/testedsj-go" // imported as SDK_PackageName\n)\n```\n\n\n\nOr to pin the version:\n\n\n\n```sh\ngo get -u \'github.com/stainless-sdks/testedsj-go@v0.0.1\'\n```\n\n\n\n## Requirements\n\nThis library requires Go 1.22+.\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```go\npackage main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/testedsj-go"\n\t"github.com/stainless-sdks/testedsj-go/option"\n)\n\nfunc main() {\n\tclient := testedsj.NewClient(\n\t\toption.WithAPIKey("My API Key"), // defaults to os.LookupEnv("TESTEDSJ_API_KEY")\n\t)\n\tpet, err := client.Pet.Update(context.TODO(), testedsj.PetUpdateParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pet.ID)\n}\n\n```\n\n### Request fields\n\nAll request parameters are wrapped in a generic `Field` type,\nwhich we use to distinguish zero values from null or omitted fields.\n\nThis prevents accidentally sending a zero value if you forget a required parameter,\nand enables explicitly sending `null`, `false`, `\'\'`, or `0` on optional parameters.\nAny field not specified is not sent.\n\nTo construct fields with values, use the helpers `String()`, `Int()`, `Float()`, or most commonly, the generic `F[T]()`.\nTo send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](any)`. For example:\n\n```go\nparams := FooParams{\n\tName: SDK_PackageName.F("hello"),\n\n\t// Explicitly send `"description": null`\n\tDescription: SDK_PackageName.Null[string](),\n\n\tPoint: SDK_PackageName.F(SDK_PackageName.Point{\n\t\tX: SDK_PackageName.Int(0),\n\t\tY: SDK_PackageName.Int(1),\n\n\t\t// In cases where the API specifies a given type,\n\t\t// but you want to send something else, use `Raw`:\n\t\tZ: SDK_PackageName.Raw[int64](0.01), // sends a float\n\t}),\n}\n```\n\n### Response objects\n\nAll fields in response structs are value types (not pointers or wrappers).\n\nIf a given field is `null`, not present, or invalid, the corresponding field\nwill simply be its zero value.\n\nAll response structs also include a special `JSON` field, containing more detailed\ninformation about each property, which you can use like so:\n\n```go\nif res.Name == "" {\n\t// true if `"name"` is either not present or explicitly null\n\tres.JSON.Name.IsNull()\n\n\t// true if the `"name"` key was not present in the response JSON at all\n\tres.JSON.Name.IsMissing()\n\n\t// When the API returns data that cannot be coerced to the expected type:\n\tif res.JSON.Name.IsInvalid() {\n\t\traw := res.JSON.Name.Raw()\n\n\t\tlegacyName := struct{\n\t\t\tFirst string `json:"first"`\n\t\t\tLast  string `json:"last"`\n\t\t}{}\n\t\tjson.Unmarshal([]byte(raw), &legacyName)\n\t\tname = legacyName.First + " " + legacyName.Last\n\t}\n}\n```\n\nThese `.JSON` structs also include an `Extras` map containing\nany properties in the json response that were not specified\nin the struct. This can be useful for API features not yet\npresent in the SDK.\n\n```go\nbody := res.JSON.ExtraFields["my_unexpected_field"].Raw()\n```\n\n### RequestOptions\n\nThis library uses the functional options pattern. Functions defined in the\n`SDK_PackageOptionName` package return a `RequestOption`, which is a closure that mutates a\n`RequestConfig`. These options can be supplied to the client or at individual\nrequests. For example:\n\n```go\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\t// Adds a header to every request made by the client\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "custom_header_info"),\n)\n\nclient.Pet.Update(context.TODO(), ...,\n\t// Override the header\n\tSDK_PackageOptionName.WithHeader("X-Some-Header", "some_other_custom_header_info"),\n\t// Add an undocumented field to the request body, using sjson syntax\n\tSDK_PackageOptionName.WithJSONSet("some.json.path", map[string]string{"my": "object"}),\n)\n```\n\nSee the [full list of request options](https://pkg.go.dev/github.com/stainless-sdks/testedsj-go/SDK_PackageOptionName).\n\n### Pagination\n\nThis library provides some conveniences for working with paginated list endpoints.\n\nYou can use `.ListAutoPaging()` methods to iterate through items across all pages:\n\n\n\nOr you can use simple `.List()` methods to fetch a single page and receive a standard response object\nwith additional helper methods like `.GetNextPage()`, e.g.:\n\n\n\n### Errors\n\nWhen the API returns a non-success status code, we return an error with type\n`*SDK_PackageName.Error`. This contains the `StatusCode`, `*http.Request`, and\n`*http.Response` values of the request, as well as the JSON of the error body\n(much like other response objects in the SDK).\n\nTo handle errors, we recommend that you use the `errors.As` pattern:\n\n```go\n_, err := client.Pet.Update(context.TODO(), testedsj.PetUpdateParams{\n\tPet: testedsj.PetParam{\n\t\tName:      "doggie",\n\t\tPhotoURLs: []string{"string"},\n\t},\n})\nif err != nil {\n\tvar apierr *testedsj.Error\n\tif errors.As(err, &apierr) {\n\t\tprintln(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request\n\t\tprintln(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response\n\t}\n\tpanic(err.Error()) // GET "/pet": 400 Bad Request { ... }\n}\n```\n\nWhen other errors occur, they are returned unwrapped; for example,\nif HTTP transport fails, you might receive `*url.Error` wrapping `*net.OpError`.\n\n### Timeouts\n\nRequests do not time out by default; use context to configure a timeout for a request lifecycle.\n\nNote that if a request is [retried](#retries), the context timeout does not start over.\nTo set a per-retry timeout, use `SDK_PackageOptionName.WithRequestTimeout()`.\n\n```go\n// This sets the timeout for the request, including all the retries.\nctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\ndefer cancel()\nclient.Pet.Update(\n\tctx,\n\ttestedsj.PetUpdateParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t},\n\t// This sets the per-retry timeout\n\toption.WithRequestTimeout(20*time.Second),\n)\n```\n\n### File uploads\n\nRequest parameters that correspond to file uploads in multipart requests are typed as\n`param.Field[io.Reader]`. The contents of the `io.Reader` will by default be sent as a multipart form\npart with the file name of "anonymous_file" and content-type of "application/octet-stream".\n\nThe file name and content-type can be customized by implementing `Name() string` or `ContentType()\nstring` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a\nfile returned by `os.Open` will be sent with the file name on disk.\n\nWe also provide a helper `SDK_PackageName.FileParam(reader io.Reader, filename string, contentType string)`\nwhich can be used to wrap any `io.Reader` with the appropriate file name and content type.\n\n\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nWe retry by default all connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit,\nand >=500 Internal errors.\n\nYou can use the `WithMaxRetries` option to configure or disable this:\n\n```go\n// Configure the default for all requests:\nclient := testedsj.NewClient(\n\toption.WithMaxRetries(0), // default is 2\n)\n\n// Override per-request:\nclient.Pet.Update(\n\tcontext.TODO(),\n\ttestedsj.PetUpdateParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t},\n\toption.WithMaxRetries(5),\n)\n```\n\n\n### Accessing raw response data (e.g. response headers)\n\nYou can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when\nyou need to examine response headers, status codes, or other details.\n\n```go\n// Create a variable to store the HTTP response\nvar response *http.Response\npet, err := client.Pet.Update(\n\tcontext.TODO(),\n\ttestedsj.PetUpdateParams{\n\t\tPet: testedsj.PetParam{\n\t\t\tName:      "doggie",\n\t\t\tPhotoURLs: []string{"string"},\n\t\t},\n\t},\n\toption.WithResponseInto(&response),\n)\nif err != nil {\n\t// handle error\n}\nfmt.Printf("%+v\\n", pet)\n\nfmt.Printf("Status Code: %d\\n", response.StatusCode)\nfmt.Printf("Headers: %+#v\\n", response.Header)\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.Get`, `client.Post`, and other HTTP verbs.\n`RequestOptions` on the client, such as retries, will be respected when making these requests.\n\n```go\nvar (\n    // params can be an io.Reader, a []byte, an encoding/json serializable object,\n    // or a "…Params" struct defined in this library.\n    params map[string]interface{}\n\n    // result can be an []byte, *http.Response, a encoding/json deserializable object,\n    // or a model defined in this library.\n    result *http.Response\n)\nerr := client.Post(context.Background(), "/unspecified", params, &result)\nif err != nil {\n    …\n}\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use either the `SDK_PackageOptionName.WithQuerySet()`\nor the `SDK_PackageOptionName.WithJSONSet()` methods.\n\n```go\nparams := FooNewParams{\n    ID:   SDK_PackageName.F("id_xxxx"),\n    Data: SDK_PackageName.F(FooNewParamsData{\n        FirstName: SDK_PackageName.F("John"),\n    }),\n}\nclient.Foo.New(context.Background(), params, SDK_PackageOptionName.WithJSONSet("data.last_name", "Doe"))\n```\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may either access the raw JSON of the response as a string\nwith `result.JSON.RawJSON()`, or get the raw JSON of a particular field on the result with\n`result.JSON.Foo.Raw()`.\n\nAny fields that are not present on the response struct will be saved and can be accessed by `result.JSON.ExtraFields()` which returns the extra fields as a `map[string]Field`.\n\n### Middleware\n\nWe provide `SDK_PackageOptionName.WithMiddleware` which applies the given\nmiddleware to requests.\n\n```go\nfunc Logger(req *http.Request, next SDK_PackageOptionName.MiddlewareNext) (res *http.Response, err error) {\n\t// Before the request\n\tstart := time.Now()\n\tLogReq(req)\n\n\t// Forward the request to the next handler\n\tres, err = next(req)\n\n\t// Handle stuff after the request\n\tend := time.Now()\n\tLogRes(res, err, start - end)\n\n    return res, err\n}\n\nclient := SDK_PackageName.SDK_ClientInitializerName(\n\tSDK_PackageOptionName.WithMiddleware(Logger),\n)\n```\n\nWhen multiple middlewares are provided as variadic arguments, the middlewares\nare applied left to right. If `SDK_PackageOptionName.WithMiddleware` is given\nmultiple times, for example first in the client then the method, the\nmiddleware in the client will run first and the middleware given in the method\nwill run next.\n\nYou may also replace the default `http.Client` with\n`SDK_PackageOptionName.WithHTTPClient(client)`. Only one http client is\naccepted (this overwrites any previous client) and receives requests after any\nmiddleware has been applied.\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/testedsj-go/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
+  },
   {
     language: 'typescript',
     content:
