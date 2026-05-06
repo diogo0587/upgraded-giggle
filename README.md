@@ -1,6 +1,6 @@
 # Testedsj TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/testedsj.svg)](https://npmjs.org/package/testedsj) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/testedsj)
+[![NPM version](<https://img.shields.io/npm/v/testedsj.svg?label=npm%20(stable)>)](https://npmjs.org/package/testedsj) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/testedsj)
 
 This library provides convenient access to the Testedsj REST API from server-side TypeScript or JavaScript.
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/testedsj-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install testedsj`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install testedsj`
 
 ## Usage
 
@@ -26,12 +26,12 @@ The full API of this library can be found in [api.md](api.md).
 import Testedsj from 'testedsj';
 
 const client = new Testedsj({
-  apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted
 });
 
-const order = await client.store.order.create({ petId: 1, quantity: 1, status: 'placed' });
+const pet = await client.pet.update({ name: 'doggie', photoUrls: ['string'] });
 
-console.log(order.id);
+console.log(pet.id);
 ```
 
 ### Request & Response types
@@ -43,10 +43,11 @@ This library includes TypeScript definitions for all request params and response
 import Testedsj from 'testedsj';
 
 const client = new Testedsj({
-  apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['TESTEDSJ_API_KEY'], // This is the default and can be omitted
 });
 
-const response: Testedsj.StoreListInventoryResponse = await client.store.listInventory();
+const params: Testedsj.PetUpdateParams = { name: 'doggie', photoUrls: ['string'] };
+const pet: Testedsj.Pet = await client.pet.update(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -59,15 +60,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.store.listInventory().catch(async (err) => {
-  if (err instanceof Testedsj.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const pet = await client.pet
+  .update({ name: 'doggie', photoUrls: ['string'] })
+  .catch(async (err) => {
+    if (err instanceof Testedsj.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -99,7 +102,7 @@ const client = new Testedsj({
 });
 
 // Or, configure per-request:
-await client.store.listInventory({
+await client.pet.update({ name: 'doggie', photoUrls: ['string'] }, {
   maxRetries: 5,
 });
 ```
@@ -116,7 +119,7 @@ const client = new Testedsj({
 });
 
 // Override per-request:
-await client.store.listInventory({
+await client.pet.update({ name: 'doggie', photoUrls: ['string'] }, {
   timeout: 5 * 1000,
 });
 ```
@@ -139,13 +142,15 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Testedsj();
 
-const response = await client.store.listInventory().asResponse();
+const response = await client.pet.update({ name: 'doggie', photoUrls: ['string'] }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.store.listInventory().withResponse();
+const { data: pet, response: raw } = await client.pet
+  .update({ name: 'doggie', photoUrls: ['string'] })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response);
+console.log(pet.id);
 ```
 
 ### Logging
@@ -225,9 +230,8 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.foo.create({
-  foo: 'my_param',
-  bar: 12,
+client.pet.update({
+  // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
 });

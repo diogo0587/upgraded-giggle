@@ -8,7 +8,7 @@ const client = new Testedsj({
 });
 
 describe('resource store', () => {
-  // skipped: tests are disabled for the time being
+  // Mock server tests are disabled
   test.skip('listInventory', async () => {
     const responsePromise = client.store.listInventory();
     const rawResponse = await responsePromise.asResponse();

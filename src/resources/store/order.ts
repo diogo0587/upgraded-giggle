@@ -1,13 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
-export class Order extends APIResource {
+/**
+ * Access to Petstore orders
+ */
+export class OrderResource extends APIResource {
   /**
    * Place a new order in the store
    *
@@ -16,10 +18,7 @@ export class Order extends APIResource {
    * const order = await client.store.order.create();
    * ```
    */
-  create(
-    body: OrderCreateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.Order> {
+  create(body: OrderCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Order> {
     return this._client.post('/store/order', { body, ...options });
   }
 
@@ -32,7 +31,7 @@ export class Order extends APIResource {
    * const order = await client.store.order.retrieve(0);
    * ```
    */
-  retrieve(orderID: number, options?: RequestOptions): APIPromise<Shared.Order> {
+  retrieve(orderID: number, options?: RequestOptions): APIPromise<Order> {
     return this._client.get(path`/store/order/${orderID}`, options);
   }
 
@@ -53,6 +52,23 @@ export class Order extends APIResource {
   }
 }
 
+export interface Order {
+  id?: number;
+
+  complete?: boolean;
+
+  petId?: number;
+
+  quantity?: number;
+
+  shipDate?: string;
+
+  /**
+   * Order Status
+   */
+  status?: 'placed' | 'approved' | 'delivered';
+}
+
 export interface OrderCreateParams {
   id?: number;
 
@@ -70,6 +86,6 @@ export interface OrderCreateParams {
   status?: 'placed' | 'approved' | 'delivered';
 }
 
-export declare namespace Order {
-  export { type OrderCreateParams as OrderCreateParams };
+export declare namespace OrderResource {
+  export { type Order as Order, type OrderCreateParams as OrderCreateParams };
 }

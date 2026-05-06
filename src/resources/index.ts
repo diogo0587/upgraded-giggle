@@ -1,9 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export * from './shared';
 export {
   PetResource,
-  type Category,
   type Pet,
   type PetFindByStatusResponse,
   type PetFindByTagsResponse,
@@ -12,7 +10,7 @@ export {
   type PetUpdateParams,
   type PetFindByStatusParams,
   type PetFindByTagsParams,
-  type PetUpdateByIDParams,
+  type PetUpdateWithFormParams,
   type PetUploadImageParams,
 } from './pet';
 export { Store, type StoreListInventoryResponse } from './store/store';
